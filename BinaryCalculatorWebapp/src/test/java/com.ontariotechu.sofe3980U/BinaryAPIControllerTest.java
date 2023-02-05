@@ -24,7 +24,6 @@ import static org.hamcrest.Matchers.containsString;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(BinaryAPIController.class)
 public class BinaryAPIControllerTest {
@@ -32,16 +31,16 @@ public class BinaryAPIControllerTest {
     @Autowired
     private MockMvc mvc;
 
-
     @Test
     public void add() throws Exception {
-        this.mvc.perform(get("/add").param("operand1","111").param("operand2","1010"))//.andDo(print())
+        this.mvc.perform(get("/add").param("operand1", "111").param("operand2", "1010"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("10001"));
     }
+
     @Test
     public void add2() throws Exception {
-        this.mvc.perform(get("/add_json").param("operand1","111").param("operand2","1010"))//.andDo(print())
+        this.mvc.perform(get("/add_json").param("operand1", "111").param("operand2", "1010"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(1010))
@@ -58,7 +57,7 @@ public class BinaryAPIControllerTest {
 
     @Test
     public void logicalOR2() throws Exception {
-        this.mvc.perform(get("/logicalOR_json").param("operand1","11111").param("operand2","11010"))//.andDo(print())
+        this.mvc.perform(get("/logicalOR_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(11111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(11010))
@@ -75,7 +74,7 @@ public class BinaryAPIControllerTest {
 
     @Test
     public void logicalAND2() throws Exception {
-        this.mvc.perform(get("/logicalAND_json").param("operand1","11111").param("operand2","11010"))//.andDo(print())
+        this.mvc.perform(get("/logicalAND_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(11111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(11010))
@@ -92,13 +91,12 @@ public class BinaryAPIControllerTest {
 
     @Test
     public void multiply2() throws Exception {
-        this.mvc.perform(get("/multiply_json").param("operand1","11111").param("operand2","11010"))//.andDo(print())
+        this.mvc.perform(get("/multiply_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(11111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(11010))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1100100110))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("multiply"));
     }
-
 
 }
