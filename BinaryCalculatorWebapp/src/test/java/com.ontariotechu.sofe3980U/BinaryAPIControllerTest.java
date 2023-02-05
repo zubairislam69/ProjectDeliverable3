@@ -142,7 +142,7 @@ public class BinaryAPIControllerTest {
 
         @Test
     public void multiply4() throws Exception {
-        this.mvc.perform(get("/multiply_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
+        this.mvc.perform(get("/multiply_json").param("operand1", "1110").param("operand2", "0"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1110))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0))
