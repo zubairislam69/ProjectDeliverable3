@@ -65,6 +65,23 @@ public class BinaryAPIControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalOR"));
     }
 
+        @Test
+    public void logicalOR3() throws Exception {
+        this.mvc.perform(get("/logicalOR").param("operand1", "1010").param("operand2", "0"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("1010"));
+    }
+
+        @Test
+    public void logicalOR4() throws Exception {
+        this.mvc.perform(get("/logicalOR_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1010))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1010))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalOR"));
+    }
+
     @Test
     public void logicalAND() throws Exception {
         this.mvc.perform(get("/logicalAND").param("operand1", "11111").param("operand2", "11010"))
@@ -82,6 +99,23 @@ public class BinaryAPIControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalAND"));
     }
 
+        @Test
+    public void logicalAND3() throws Exception {
+        this.mvc.perform(get("/logicalAND").param("operand1", "11011").param("operand2", "0"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("00000"));
+    }
+
+        @Test
+    public void logicalAND4() throws Exception {
+        this.mvc.perform(get("/logicalAND_json").param("operand1", "11011").param("operand2", "0"))// .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(11011))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(00000))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalAND"));
+    }
+
     @Test
     public void multiply() throws Exception {
         this.mvc.perform(get("/multiply").param("operand1", "11111").param("operand2", "11010"))
@@ -96,6 +130,23 @@ public class BinaryAPIControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(11111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(11010))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(1100100110))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("multiply"));
+    }
+
+        @Test
+    public void multiply3() throws Exception {
+        this.mvc.perform(get("/multiply").param("operand1", "1110").param("operand2", "0"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("0"));
+    }
+
+        @Test
+    public void multiply4() throws Exception {
+        this.mvc.perform(get("/multiply_json").param("operand1", "11111").param("operand2", "11010"))// .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(1110))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(0))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("multiply"));
     }
 
