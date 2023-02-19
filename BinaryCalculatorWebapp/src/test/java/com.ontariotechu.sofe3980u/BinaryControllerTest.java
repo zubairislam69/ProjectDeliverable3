@@ -61,7 +61,7 @@ public class BinaryControllerTest {
 
     @Test
     public void missingOperator() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "10100").param("operand2", "11111"))
+        this.mvc.perform(post("/").param("operand1", "10100").param("operator", "").param("operand2", "11111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("Error"))
                 .andExpect(model().attributeDoesNotExist("result"))
