@@ -30,10 +30,9 @@ public class BinaryControllerTest {
     @Autowired
     private MockMvc mvc;
 
-
     @Test
     public void getDefault() throws Exception {
-        this.mvc.perform(get("/"))//.andDo(print())
+        this.mvc.perform(get("/"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("calculator"))
                 .andExpect(model().attribute("operand1", ""))
@@ -42,25 +41,26 @@ public class BinaryControllerTest {
 
     @Test
     public void getParameter() throws Exception {
-        this.mvc.perform(get("/").param("operand1","111"))
+        this.mvc.perform(get("/").param("operand1", "111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("calculator"))
                 .andExpect(model().attribute("operand1", "111"))
                 .andExpect(model().attribute("operand1Focused", true));
     }
+
     @Test
     public void postParameter() throws Exception {
-        this.mvc.perform(post("/").param("operand1","111").param("operator","+").param("operand2","111"))//.andDo(print())
+        this.mvc.perform(post("/").param("operand1", "111").param("operator", "+").param("operand2", "111"))// .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "1110"))
                 .andExpect(model().attribute("operand1", "111"));
     }
 
-    //Design 1: Add three more test cases for the binary web application.
+    // Design 1: Add three more test cases for the binary web application.
     @Test
     public void invalidOperator1() throws Exception {
-        this.mvc.perform(post("/").param("operand1","1111").param("operator","-").param("operand2","1101"))
+        this.mvc.perform(post("/").param("operand1", "1111").param("operator", "-").param("operand2", "1101"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("Error"))
                 .andExpect(model().attributeDoesNotExist("result"))
@@ -69,7 +69,7 @@ public class BinaryControllerTest {
 
     @Test
     public void invalidOperator2() throws Exception {
-        this.mvc.perform(post("/").param("operand1","10110").param("operator","abc").param("operand2","10101"))
+        this.mvc.perform(post("/").param("operand1", "10110").param("operator", "abc").param("operand2", "10101"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("Error"))
                 .andExpect(model().attributeDoesNotExist("result"))
@@ -78,12 +78,11 @@ public class BinaryControllerTest {
 
     @Test
     public void missingOperator() throws Exception {
-        this.mvc.perform(post("/").param("operand1","10100").param("operand2","11111"))
+        this.mvc.perform(post("/").param("operand1", "10100").param("operand2", "11111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("Error"))
                 .andExpect(model().attributeDoesNotExist("result"))
                 .andExpect(model().attribute("operand1", "10100"));
     }
-
 
 }
