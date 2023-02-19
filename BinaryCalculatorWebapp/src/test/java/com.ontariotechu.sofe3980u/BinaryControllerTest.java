@@ -58,23 +58,6 @@ public class BinaryControllerTest {
     }
 
     // Design 1: Add three more test cases for the binary web application.
-    @Test
-    public void invalidOperator1() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "1111").param("operator", "-").param("operand2", "1101"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("Error"))
-                .andExpect(model().attributeDoesNotExist("result"))
-                .andExpect(model().attribute("operand1", "1111"));
-    }
-
-    @Test
-    public void invalidOperator2() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "10110").param("operator", "abc").param("operand2", "10101"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("Error"))
-                .andExpect(model().attributeDoesNotExist("result"))
-                .andExpect(model().attribute("operand1", "10110"));
-    }
 
     @Test
     public void missingOperator() throws Exception {
@@ -84,5 +67,25 @@ public class BinaryControllerTest {
                 .andExpect(model().attributeDoesNotExist("result"))
                 .andExpect(model().attribute("operand1", "10100"));
     }
+
+    @Test
+    public void noParameters() throws Exception {
+        this.mvc.perform(post("/").param("operand1", "").param("operator", "").param("operand2", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("Error"))
+                .andExpect(model().attributeDoesNotExist("result"))
+                .andExpect(model().attribute("operand1", ""));
+    }
+
+    @Test
+    public void missingOperands() throws Exception {
+        this.mvc.perform(post("/").param("operand1", "").param("operator", "+").param("operand2", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("Result"))
+                .andExpect(model().attributeDoesNotExist("Error"))
+                .andExpect(model().attribute("operand1", "0"));
+    }
+
+    // Test cases for newly implemented operations
 
 }
