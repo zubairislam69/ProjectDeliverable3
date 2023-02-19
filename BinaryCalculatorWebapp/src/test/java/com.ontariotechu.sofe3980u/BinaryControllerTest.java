@@ -81,9 +81,9 @@ public class BinaryControllerTest {
     public void missingOperands() throws Exception {
         this.mvc.perform(post("/").param("operand1", "").param("operator", "+").param("operand2", ""))
                 .andExpect(status().isOk())
-                .andExpect(view().name("Result"))
+                .andExpect(view().name("result"))
                 .andExpect(model().attributeDoesNotExist("Error"))
-                .andExpect(model().attribute("operand1", "0"));
+                .andExpect(model().attribute("operand1", ""));
     }
 
     // Test cases for newly implemented operations

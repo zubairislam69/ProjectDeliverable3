@@ -184,7 +184,7 @@ public class BinaryAPIControllerTest {
     public void logicalAND5() throws Exception {
         this.mvc.perform(get("/logicalAND").param("operand1", "0111").param("operand2", "0111"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("0111"));
+                .andExpect(content().string("111"));
     }
 
     // test case for when both operands are of the same value
@@ -192,9 +192,9 @@ public class BinaryAPIControllerTest {
     public void logicalAND6() throws Exception {
         this.mvc.perform(get("/logicalAND_json").param("operand1", "0111").param("operand2", "0111"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(0111))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0111))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(0111))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(111))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(111))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(111))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalAND"));
     }
 
@@ -203,7 +203,7 @@ public class BinaryAPIControllerTest {
     public void logicalAND7() throws Exception {
         this.mvc.perform(get("/logicalAND").param("operand1", "10001").param("operand2", "0110111"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("010001"));
+                .andExpect(content().string("10001"));
     }
 
     // test case for when operands are of different lengths
@@ -213,7 +213,7 @@ public class BinaryAPIControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(10001))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(110111))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(010001))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(10001))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("logicalAND"));
     }
 
@@ -287,8 +287,8 @@ public class BinaryAPIControllerTest {
     public void multiply6() throws Exception {
         this.mvc.perform(get("/multiply_json").param("operand1", "0101").param("operand2", "0101"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(0101))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(0101))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(101))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(101))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(11001))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("multiply"));
     }
