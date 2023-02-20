@@ -141,10 +141,10 @@ public class BinaryControllerTest {
     // test case when both operands are of the same length
     @Test
     public void logicalAND() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "111").param("operator", "&").param("operand2", "111"))
+        this.mvc.perform(post("/").param("operand1", "111").param("operator", "&").param("operand2", "101"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "111"))
+                .andExpect(model().attribute("result", "101"))
                 .andExpect(model().attribute("operand1", "111"));
     }
 
