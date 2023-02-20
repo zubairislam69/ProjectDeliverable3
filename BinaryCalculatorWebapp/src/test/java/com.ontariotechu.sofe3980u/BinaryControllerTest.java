@@ -91,7 +91,7 @@ public class BinaryControllerTest {
     // test case when both operands are of the same length
     @Test
     public void logicalOR() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "1011").param("operator", "logicalOR").param("operand2", "1111"))
+        this.mvc.perform(post("/").param("operand1", "1011").param("operator", "|").param("operand2", "1111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "1111"))
@@ -101,7 +101,7 @@ public class BinaryControllerTest {
     // test case where one operand is 0
     @Test
     public void logicalOR2() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "1100").param("operator", "logicalOR").param("operand2", "0"))
+        this.mvc.perform(post("/").param("operand1", "1100").param("operator", "|").param("operand2", "0"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "1100"))
@@ -111,7 +111,7 @@ public class BinaryControllerTest {
     // test case for when both operands are of the same value
     @Test
     public void logicalOR3() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "10001").param("operator", "logicalOR").param("operand2", "10001"))
+        this.mvc.perform(post("/").param("operand1", "10001").param("operator", "|").param("operand2", "10001"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "10001"))
@@ -121,47 +121,47 @@ public class BinaryControllerTest {
     // test case for when operands are of different lengths
     @Test
     public void logicalOR4() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "101").param("operator", "logicalOR").param("operand2", "01101"))
+        this.mvc.perform(post("/").param("operand1", "101").param("operator", "|").param("operand2", "01101"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "01101"))
+                .andExpect(model().attribute("result", "1101"))
                 .andExpect(model().attribute("operand1", "101"));
     }
 
     // test case for when both operands are 0
     @Test
     public void logicalOR5() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "0000").param("operator", "logicalOR").param("operand2", "0000"))
+        this.mvc.perform(post("/").param("operand1", "0").param("operator", "|").param("operand2", "0"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "0"))
-                .andExpect(model().attribute("operand1", "0000"));
+                .andExpect(model().attribute("operand1", "0"));
     }
 
     // test case when both operands are of the same length
     @Test
     public void logicalAND() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "0111").param("operator", "logicalAND").param("operand2", "0111"))
+        this.mvc.perform(post("/").param("operand1", "111").param("operator", "&").param("operand2", "111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "0111"))
-                .andExpect(model().attribute("operand1", "0111"));
+                .andExpect(model().attribute("result", "111"))
+                .andExpect(model().attribute("operand1", "111"));
     }
 
     // test case where one operand is 0
     @Test
     public void logicalAND2() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "01010").param("operator", "logicalAND").param("operand2", "0"))
+        this.mvc.perform(post("/").param("operand1", "1010").param("operator", "&").param("operand2", "0"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "00000"))
-                .andExpect(model().attribute("operand1", "01010"));
+                .andExpect(model().attribute("result", "0"))
+                .andExpect(model().attribute("operand1", "1010"));
     }
 
     // test case for when both operands are of the same value
     @Test
     public void logicalAND3() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "110").param("operator", "logicalAND").param("operand2", "110"))
+        this.mvc.perform(post("/").param("operand1", "110").param("operator", "&").param("operand2", "110"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "110"))
@@ -171,27 +171,27 @@ public class BinaryControllerTest {
     // test case for when operands are of different lengths
     @Test
     public void logicalAND4() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "10").param("operator", "logicalAND").param("operand2", "11010"))
+        this.mvc.perform(post("/").param("operand1", "10").param("operator", "&").param("operand2", "11010"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "00010"))
+                .andExpect(model().attribute("result", "10"))
                 .andExpect(model().attribute("operand1", "10"));
     }
 
     // test case for when both operands are 0
     @Test
     public void logicalAND5() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "0000").param("operator", "logicalAND").param("operand2", "0000"))
+        this.mvc.perform(post("/").param("operand1", "0").param("operator", "&").param("operand2", "0"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
-                .andExpect(model().attribute("result", "0000"))
-                .andExpect(model().attribute("operand1", "0000"));
+                .andExpect(model().attribute("result", "0"))
+                .andExpect(model().attribute("operand1", "0"));
     }
 
     // test case when both operands are of the same length
     @Test
     public void multiply() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "100").param("operator", "multiply").param("operand2", "110"))
+        this.mvc.perform(post("/").param("operand1", "100").param("operator", "*").param("operand2", "110"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "11000"))
@@ -199,9 +199,9 @@ public class BinaryControllerTest {
     }
 
     // test case where one operand is 0
-   @Test
+    @Test
     public void multiply2() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "001101").param("operator", "multiply").param("operand2", "0"))
+        this.mvc.perform(post("/").param("operand1", "001101").param("operator", "*").param("operand2", "0"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "0"))
@@ -209,9 +209,9 @@ public class BinaryControllerTest {
     }
 
     // test case for when both operands are of the same value
-   @Test
+    @Test
     public void multiply3() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "1110").param("operator", "multiply").param("operand2", "1110"))
+        this.mvc.perform(post("/").param("operand1", "1110").param("operator", "*").param("operand2", "1110"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "11000100"))
@@ -219,9 +219,9 @@ public class BinaryControllerTest {
     }
 
     // test case for when operands are of different lengths
-  @Test
+    @Test
     public void multiply4() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "10").param("operator", "multiply").param("operand2", "1111"))
+        this.mvc.perform(post("/").param("operand1", "10").param("operator", "*").param("operand2", "1111"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "11110"))
@@ -229,9 +229,9 @@ public class BinaryControllerTest {
     }
 
     // test case for when both operands are 0
-  @Test
+    @Test
     public void multiply5() throws Exception {
-        this.mvc.perform(post("/").param("operand1", "0000").param("operator", "multiply").param("operand2", "0000"))
+        this.mvc.perform(post("/").param("operand1", "0000").param("operator", "*").param("operand2", "0000"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("result"))
                 .andExpect(model().attribute("result", "0"))
