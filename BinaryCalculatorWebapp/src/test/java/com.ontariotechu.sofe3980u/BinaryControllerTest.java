@@ -59,7 +59,8 @@ public class BinaryControllerTest {
 
     // Design 1: Add three more test cases for the binary web application.
     
-    // The below tests work fine in Windows but fail in Linux environment so do not work in Google Cloud Terminal
+    // The below two tests work fine in Windows but fail in Linux environment so do not work in Google Cloud Terminal
+    // Commented out to get things working
     /*
     @Test
     public void missingOperator() throws Exception {
