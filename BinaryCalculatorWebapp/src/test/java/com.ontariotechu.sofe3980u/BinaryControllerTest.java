@@ -59,14 +59,11 @@ public class BinaryControllerTest {
 
     // Design 1: Add three more test cases for the binary web application.
     
-    // The below two tests work fine in Windows but fail in Linux environment so do not work in Google Cloud Terminal
-    // Commented out to get things working
-    /*
     @Test
     public void missingOperator() throws Exception {
         this.mvc.perform(post("/").param("operand1", "10100").param("operator", "").param("operand2", "11111"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("Error"))
+                .andExpect(view().name("error"))
                 .andExpect(model().attributeDoesNotExist("result"))
                 .andExpect(model().attribute("operand1", "10100"));
     }
@@ -75,11 +72,10 @@ public class BinaryControllerTest {
     public void noParameters() throws Exception {
         this.mvc.perform(post("/").param("operand1", "").param("operator", "").param("operand2", ""))
                 .andExpect(status().isOk())
-                .andExpect(view().name("Error"))
+                .andExpect(view().name("error"))
                 .andExpect(model().attributeDoesNotExist("result"))
                 .andExpect(model().attribute("operand1", ""));
     }
-    */
     
     @Test
     public void missingOperands() throws Exception {
