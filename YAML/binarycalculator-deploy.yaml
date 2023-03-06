@@ -6,15 +6,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: binarycalculator
+      app: binarycalc
   template:
     metadata:
       labels:
-        app: binarycalculator
+        app: binarycalc
     spec:
       containers:
         - image: gcr.io/second-drake-379803/binarycalculator
-          name: binarycalculator
+          name: binarycalc
           ports:
             - containerPort: 8080
-              name: binarycalculator 
+              name: binarycalc
