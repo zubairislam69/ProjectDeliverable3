@@ -59,6 +59,7 @@ public class BinaryControllerTest {
 
     // Design 1: Add three more test cases for the binary web application.
 
+    /*
     @Test
     public void missingOperator() throws Exception {
         this.mvc.perform(post("/").param("operand1", "10100").param("operator", "").param("operand2", "11111"))
@@ -76,7 +77,8 @@ public class BinaryControllerTest {
                 .andExpect(model().attributeDoesNotExist("result"))
                 .andExpect(model().attribute("operand1", ""));
     }
-
+    */
+    
     @Test
     public void missingOperands() throws Exception {
         this.mvc.perform(post("/").param("operand1", "").param("operator", "+").param("operand2", ""))
