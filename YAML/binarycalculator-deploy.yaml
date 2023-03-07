@@ -13,7 +13,7 @@ spec:
         app: binarycalc
     spec:
       containers:
-        - image: gcr.io/second-drake-379803/binarycalculator
+        - image: gcr.io/fluid-mind-379620/binarycalculator
           name: binarycalc
           ports:
             - containerPort: 8080
