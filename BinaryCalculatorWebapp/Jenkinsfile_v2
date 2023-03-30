@@ -65,5 +65,18 @@ spec:
         }
       }
     }
+    
+    stage ('Deploy') {
+      steps {
+        container('kubectl') {
+          withCredentials([string(credentialsId: "${JENKINS_CRED}", variable: 'GCLOUD_KEY')]) {
+            sh """
+              /builder/kubectl apply -f ./BinaryCalculatorWebapp/k8s/deployment.yaml --record
+              /builder/kubectl set image deployment/${APP_NAME} ${APP_NAME}=${IMAGE_TAG}:${BUILD_NUMBER} --record
+            """
+          }
+        }
+      }
+    }
   }
 }
