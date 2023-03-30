@@ -1,7 +1,7 @@
 pipeline {
   environment {
     //PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
-	PROJECT = "green-tract-379622"
+	PROJECT = "second-drake-379803"
     APP_NAME = "binary-calculator2"
 	//CLUSTER = "REPLACE_WITH_YOUR_CLUSTER_NAME"
     CLUSTER = "sofe3980u"
